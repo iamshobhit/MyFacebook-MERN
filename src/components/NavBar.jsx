@@ -128,12 +128,12 @@ function NavBar() {
                                        <div className="col-12">
                                           <div className="form-group mb-1">
                                              
-                                             <input type="password" className="form-control" name="" id="" placeholder="New Password"/>
+                                             <input type="password" className="form-control mb-2" name="" id="" placeholder="New Password"/>
                                           </div>
                                        </div>
                                        <div className="col-12">
-                                          <div className="form-group d-flex flex-column justify-content-between">
-                                             <label for="validationDefault04" className="form-label"><b>Date of Birth</b></label>
+                                          <div className="form-group d-flex flex-column mb-2">
+                                             <label for="validationDefault04" className="form-label m-0">Date of Birth</label>
                                              <select className="form-select" id="validationDefault04" required>
                                                 <option selected disabled value="">YYYY</option>
                                                 <option>2021</option>
@@ -150,7 +150,7 @@ function NavBar() {
                                        </div>
                                        <div className="col-12">
                                           <div className="form-group mb-1">
-                                             <label for="validationDefault04" className="form-label"><b>Gender</b></label>
+                                             <label for="validationDefault04" className="form-label mb-0">Gender</label>
                                              <div className="form-check d-flex flex-sm-column justify-content-between">
                                                 <label className="form-check-label">
                                                 <input className="form-check-input text-black-50" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked/>
