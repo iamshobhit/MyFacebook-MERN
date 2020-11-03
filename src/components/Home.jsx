@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Users extends Component {
+class Home extends Component {
   constructor() {
     super();
     this.state = {
@@ -16,16 +16,16 @@ class Users extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Users Profile with </h2>
+      <>
+        <h2>Home Page </h2>
         <ul>
         {this.state.users.map(user => 
           <li key={user.id}>{user.firstName} {user.lastName}</li>
         )}
         </ul>
-      </div>
+      </>
     );
   }
 }
 
-export default Users;
+export default Home;

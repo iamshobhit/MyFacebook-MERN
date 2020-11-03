@@ -18,6 +18,9 @@ app.get('/api', (req,res) => {
         {id: 4, firstName: 'John', lastName: 'Doe'},
         {id: 5, firstName: 'Brad', lastName: 'Traversy'},
         {id: 6, firstName: 'Mary', lastName: 'Swanson'},
+        {id: 7, firstName: 'John', lastName: 'Doe'},
+        {id: 8, firstName: 'Brad', lastName: 'Traversy'},
+        {id: 9, firstName: 'Mary', lastName: 'Swanson'},
       ];
 
       res.json(users);
