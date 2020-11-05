@@ -1,12 +1,40 @@
-import React from 'react';
+import React,{Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/js/dist/modal'
 import {Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom';
 
-function NavBar() {
-    return (
-        <>
+
+class NavBar extends Component {
+   constructor(props) {
+      super(props)
+   
+      this.state = {
+          email:'',
+          password:''
+      }
+   }
+
+   handleEmailChange = (event) => {
+      this.setState({
+         email: event.target.value
+      })
+   }
+   handlePasswordChange = (event) => {
+      this.setState({
+         password: event.target.value
+      })
+   }
+   handleSubmit = (event) => {
+      alert(`${this.state.email} ${this.state.password}`);
+      
+      // event.preventDefault();
+   }
+   
+   render() {
+      const {email,password} = this.state
+      return (
+         <>
         <nav className="navbar navbar-expand-xl navbar-dark bg">
         <Link className="navbar-brand d-none d-md-block" to="/">
             <img 
@@ -67,17 +95,20 @@ function NavBar() {
                         <div className="col-md-12 p-2 heavy-rain-gradient">
                            <div className="card">
                               <img className="card-img-top w-25 d-flex align-self-center" src="images/avtar-male.png" alt=""/>
-                              <form className="m-4" action="">
+                                 <p>your email is: {email}</p>
+                                 <p>your password is: {password}</p>
+                              <form className="m-4" action="" onSubmit={this.handleSubmit}>
                                  <div className="form-group mb-1">
-                                    <input type="email" className="form-control" name="" aria-describedby="emailHelpId" placeholder="Email address"/>
+                                    <input type="email" className="form-control" value={this.state.email} onChange={this.handleEmailChange} name="" aria-describedby="emailHelpId" placeholder="Email address"/>
                                     
                                  </div>
                                  <div className="form-group mb-1">
                                     
-                                    <input type="password" className="form-control" name="" placeholder="Password"/>
+                                    <input type="password" className="form-control" name="" value={this.state.password} onChange={this.handlePasswordChange}  placeholder="Password"/>
                                  </div>
                                  <Button type="submit" className="btn btn-outline-black logoStyle bg" >Sign In</Button>
                               </form>
+
                            </div>
                         </div>
                      </div>
@@ -101,7 +132,8 @@ function NavBar() {
                         <div className="col-md-12 p-2 ">
                            <div className="card">
                               <img className="card-img-top w-25 d-flex align-self-center" src="images/avtar-male.png" alt=""/>
-                              <form className="m-4" action="">
+                              
+                              <form className="m-4 signinform" action="">
                                  <div className="container">
                                     <div className="row">
                                        <div className="col-6">
@@ -181,6 +213,7 @@ function NavBar() {
                                  </div>
                                  <Button type="submit" className="btn btn-outline-black logoStyle bg">Sign Up</Button>
                               </form>
+
                            </div>
                         </div>
                      </div>
@@ -190,7 +223,9 @@ function NavBar() {
          </div>
       </div>
         </>
-    )
+      )
+   }
 }
+
 
 export default NavBar;

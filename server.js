@@ -1,30 +1,32 @@
+//core modules
 const http = require('http');
-const express = require('express');
 
+//third party modules
+const mongoose = require('mongoose');
+const express = require('express');
 const morgan = require('morgan');
 
 const app = express();
+
+
+const signinRouter = require('./src/routes/signinRouter')
+const url = 'mongodb://localhost:27017/local';
+const connect = mongoose.connect(url,{ useFindAndModify: false ,useNewUrlParser: true , useUnifiedTopology: true ,useCreateIndex: true});
+
+connect.then((db) => {
+    console.log('connected correctly to the server');
+},(err)=> console.log(err));
+
+
+const apiRouter =require('./src/routes/apiRouter');
 
 app.use(express.static(__dirname +'./public'));
 
 const normalizePort = port => parseInt(port,10);
 const PORT = normalizePort(process.env.PORT || 5000)
 
-app.get('/api', (req,res) => {
-    const users = [
-        {id: 1, firstName: 'John', lastName: 'Doe'},
-        {id: 2, firstName: 'Brad', lastName: 'Traversy'},
-        {id: 3, firstName: 'Mary', lastName: 'Swanson'},
-        {id: 4, firstName: 'John', lastName: 'Doe'},
-        {id: 5, firstName: 'Brad', lastName: 'Traversy'},
-        {id: 6, firstName: 'Mary', lastName: 'Swanson'},
-        {id: 7, firstName: 'John', lastName: 'Doe'},
-        {id: 8, firstName: 'Brad', lastName: 'Traversy'},
-        {id: 9, firstName: 'Mary', lastName: 'Swanson'},
-      ];
-
-      res.json(users);
-})
+app.use('/api',apiRouter);
+app.use('/sign',signinRouter);
 
 app.use(morgan('dev'))
 
@@ -36,4 +38,5 @@ server.listen(PORT,(err) => {
         throw err;
     }
     console.log("Server is Started.");
+
 })
