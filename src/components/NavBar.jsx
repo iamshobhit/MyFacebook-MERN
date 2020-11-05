@@ -52,7 +52,7 @@ function NavBar() {
         
         </Button>
         </nav>
-        <div className="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div className="modal fade" id="exampleModalCenter1" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
          <div className="modal-dialog modal-dialog-centered modal-md" role="document">
             <div className="modal-content">
                <div className="modal-header bg ">
@@ -69,12 +69,12 @@ function NavBar() {
                               <img className="card-img-top w-25 d-flex align-self-center" src="images/avtar-male.png" alt=""/>
                               <form className="m-4" action="">
                                  <div className="form-group mb-1">
-                                    <input type="email" className="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="Email address"/>
+                                    <input type="email" className="form-control" name="" aria-describedby="emailHelpId" placeholder="Email address"/>
                                     
                                  </div>
                                  <div className="form-group mb-1">
                                     
-                                    <input type="password" className="form-control" name="" id="" placeholder="Password"/>
+                                    <input type="password" className="form-control" name="" placeholder="Password"/>
                                  </div>
                                  <Button type="submit" className="btn btn-outline-black logoStyle bg" >Sign In</Button>
                               </form>
@@ -86,7 +86,7 @@ function NavBar() {
             </div>
          </div>
       </div>
-      <div className="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div className="modal fade" id="exampleModalCenter2" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
          <div className="modal-dialog modal-dialog-centered modal-md" role="document">
             <div className="modal-content">
                <div className="modal-header bg">
@@ -107,67 +107,68 @@ function NavBar() {
                                        <div className="col-6">
                                           <div className="form-group mb-1">
                                              <input type="text"
-                                                className="form-control" name="" id="" aria-describedby="helpId" placeholder="Firstname"/>
+                                                className="form-control" name="" aria-describedby="helpId" placeholder="Firstname"/>
                                              
                                           </div>
                                        </div>
                                        <div className="col-6">
                                           <div className="form-group mb-1">
                                              <input type="text"
-                                                className="form-control" name="" id="" aria-describedby="helpId" placeholder="Lastname"/>
+                                                className="form-control" name="" aria-describedby="helpId" placeholder="Lastname"/>
                                              
                                           </div>
                                        </div>
                                        <div className="col-12">
                                           <div className="form-group mb-1">
                                              
-                                             <input type="text" className="form-control" name="" id="" aria-describedby="helpId" placeholder="Email address"/>
+                                             <input type="text" className="form-control" name="" aria-describedby="helpId" placeholder="Email address"/>
                                              
                                           </div>
                                        </div>
                                        <div className="col-12">
                                           <div className="form-group mb-1">
                                              
-                                             <input type="password" className="form-control mb-2" name="" id="" placeholder="New Password"/>
+                                             <input type="password" className="form-control mb-2" name="" placeholder="New Password"/>
                                           </div>
                                        </div>
                                        <div className="col-12">
                                           <div className="form-group d-flex flex-column mb-2">
-                                             <label for="validationDefault04" className="form-label m-0">Date of Birth</label>
+                                             <label htmlFor="validationDefault04" className="form-label m-0">Date of Birth</label>
                                              <select className="form-select" id="validationDefault04" required>
-                                                <option selected disabled value="">YYYY</option>
+                                                <option  disabled value="">YYYY</option>
                                                 <option>2021</option>
                                              </select>
-                                             <select className="form-select " id="validationDefault04" required>
-                                                <option selected disabled value="">MM</option>
+                                             <select className="form-select " id="validationDefault05" required>
+                                                <option  disabled value="">MM</option>
                                                 <option>January</option>
                                              </select>
-                                             <select className="form-select" id="validationDefault04" required>
-                                                <option selected disabled value="">DD</option>
+                                             <select className="form-select" id="validationDefault06" required>
+                                                <option  disabled value="">DD</option>
                                                 <option>09</option>
+                                                <option>10</option>
                                              </select>
                                           </div>
                                        </div>
                                        <div className="col-12">
                                           <div className="form-group mb-1">
-                                             <label for="validationDefault04" className="form-label mb-0">Gender</label>
+                                             <label htmlFor="validationDefault04" className="form-label mb-0">Gender</label>
                                              <div className="form-check d-flex flex-sm-column justify-content-between">
                                                 <label className="form-check-label">
-                                                <input className="form-check-input text-black-50" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked/>
+                                                <input className="form-check-input text-black-50" type="radio" name="exampleRadios" id="exampleRadios1" value="option2" defaultChecked/>
                                                 Female
                                                 <span className="circle">
                                                 <span className="check"></span>
                                                 </span>
                                                 </label>
                                                 <label className="form-check-label">
-                                                <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked/>
+                                                <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" defaultChecked/>
                                                 Male
                                                 <span className="circle">
                                                 <span className="check"></span>
                                                 </span>
                                                 </label>
                                                 <label className="form-check-label">
-                                                <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked/>
+                                                <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option2" defaultChecked/>
                                                 Custom
                                                 <span className="circle">
                                                 <span className="check"></span>
