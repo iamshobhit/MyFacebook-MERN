@@ -1,16 +1,35 @@
-import React,{Component} from 'react';
+import React,{Component,useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/js/dist/modal'
+import axios from 'axios'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 import {Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom';
 
+const Calender = ()=>{
+   const [selectedDate, setSelectedDate] = useState(null);
+   return(
+      <div>
+         <DatePicker
+            selected={selectedDate}
+            onChange={date => setSelectedDate(date)}
+            dateFormat='dd/MM/yyyy'
+            filterDate={date => date.getDay() !== 6 && date.getDay() !== 0}
+            isClearable
+            showYearDropdown
+            scrollableMonthYearDropdown
+         />
+      </div>
+   )
+}
 
 class NavBar extends Component {
    constructor(props) {
       super(props)
    
       this.state = {
-          email:'',
+          email:'shobit',
           password:''
       }
    }
@@ -26,13 +45,30 @@ class NavBar extends Component {
       })
    }
    handleSubmit = (event) => {
-      alert(`${this.state.email} ${this.state.password}`);
+      const data = this.state
+      console.log(data);
+
+      axios
+      .post('/sign',this.state)
+      .then(res => {
+         console.log(res);
+      })
+      .catch(err => console.log(err));
+
       
-      // event.preventDefault();
    }
-   
+
+   componentDidMount(){
+      this.setState({
+         email:'',
+         password:''
+      })
+   }
+
    render() {
+      
       const {email,password} = this.state
+
       return (
          <>
         <nav className="navbar navbar-expand-xl navbar-dark bg">
@@ -164,21 +200,9 @@ class NavBar extends Component {
                                           </div>
                                        </div>
                                        <div className="col-12">
-                                          <div className="form-group d-flex flex-column mb-2">
+                                          <div className="form-group d-flex flex-row mb-2v justify-content-between">
                                              <label htmlFor="validationDefault04" className="form-label m-0">Date of Birth</label>
-                                             <select className="form-select" id="validationDefault04" required>
-                                                <option  disabled value="">YYYY</option>
-                                                <option>2021</option>
-                                             </select>
-                                             <select className="form-select " id="validationDefault05" required>
-                                                <option  disabled value="">MM</option>
-                                                <option>January</option>
-                                             </select>
-                                             <select className="form-select" id="validationDefault06" required>
-                                                <option  disabled value="">DD</option>
-                                                <option>09</option>
-                                                <option>10</option>
-                                             </select>
+                                             <Calender/>
                                           </div>
                                        </div>
                                        <div className="col-12">

@@ -9,7 +9,7 @@ const morgan = require('morgan');
 const app = express();
 
 
-const signinRouter = require('./src/routes/signinRouter')
+const signinRouter = require('./src/routes/signinRouter');
 const url = 'mongodb://localhost:27017/local';
 const connect = mongoose.connect(url,{ useFindAndModify: false ,useNewUrlParser: true , useUnifiedTopology: true ,useCreateIndex: true});
 
@@ -19,8 +19,6 @@ connect.then((db) => {
 
 
 const apiRouter =require('./src/routes/apiRouter');
-
-app.use(express.static(__dirname +'./public'));
 
 const normalizePort = port => parseInt(port,10);
 const PORT = normalizePort(process.env.PORT || 5000)
