@@ -17,7 +17,7 @@ class Home extends Component {
   render() {
     return (
       <>
-        <h2>Home Page </h2>
+        <h2>Home Page Bro!</h2>
         <ul>
         {this.state.users.map(user => 
           <li key={user.id}>{user.firstName} {user.lastName}</li>
