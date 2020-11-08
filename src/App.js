@@ -1,43 +1,46 @@
-// import React from 'react';
-import HomePage from './components/HomePage'
-import Home from './components/Home';
+import React,{useContext} from 'react';
+// import HomePage from './components/HomePage'
+// import Home from './components/Home';
 // import About from './components/About';
 // import UserProfile from './components/UserProfile';
 // import SignUp from './components/SignUp';
 // import SignIn from './components/SignIn';
 // import UserPage from './components/UserPage';
 // import Chat from './components/Chat';
+import Home from './pages/Home'
 import {Switch, Route, Redirect, BrowserRouter as Router} from 'react-router-dom';
 import Signup from './pages/Signup';
-import AuthDebugger from './components/AuthDebugger'
 import Login from './pages/Login';
 import Users from './pages/Users';
-import { AuthProvider } from './context/AuthContext';
+import { AuthContext, AuthProvider } from './context/AuthContext';
 import { FetchProvider } from './context/FetchContext';
 import AppShell from './AppShell';
+
+const AuthenticatedRoute = ({children, ...rest}) => {
+  const authContext = useContext(AuthContext);
+  return (
+    <Route {...rest} render={() => 
+      authContext.isAuthenticated() ? (
+        <AppShell>
+          {children}
+        </AppShell>
+      ): (
+        <Redirect to="/" />
+      )
+    } />
+  )
+}
 
 const AppRoutes = () => {
   return (
     <>
-      <HomePage/>
       <Switch>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/signup">
-          <Signup />
-        </Route>
-        <Route path="/userpage">
-          <AuthDebugger />
-        </Route>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/users">
-          <AppShell>
-            <Users />
-          </AppShell>
-        </Route>
+        <Route path="/login" component={Login}/>
+        <Route path="/signup" component={Signup}/>
+        <Route path="/" exact component={Home}/>
+        <AuthenticatedRoute path="/userpage">
+          <Users />
+        </AuthenticatedRoute>
         <Redirect to="/"/>
       </Switch>
     </>

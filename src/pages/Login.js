@@ -1,18 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import Card from '../components/common/Card';
 import Hyperlink from './../components/common/Hyperlink';
 import Label from './../components/common/Label';
 import FormInput from './../components/FormInput';
 import FormSuccess from './../components/FormSuccess';
 import FormError from './../components/FormError';
-import GradientBar from './../components/common/GradientBar';
-import GradientButton from '../components/common/GradientButton';
-import logo from './../images/logo.png';
 import { publicFetch } from '../util/fetch'
 import { Redirect } from 'react-router';
 import {AuthContext} from '../context/AuthContext'
+import {Button} from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().required('Email is required'),
@@ -23,7 +21,7 @@ const Login = () => {
   const authContext = useContext(AuthContext);
   const [loginSuccess, setLoginSuccess] = useState();
   const [loginError, setLoginError] = useState();
-  const [loginLoading, setLoginLoading] = useState(false);
+  const [loginLoading,setLoginLoading] = useState(false);
   const [redirectOnLogin, setRedirectOnLogin] = useState(false);
   const submitCredentials = async credentials => {
     try {
@@ -48,94 +46,93 @@ const Login = () => {
   return (
     <>
     {redirectOnLogin && <Redirect to="/userpage"/>}
-      <section className="w-full sm:w-1/2 h-screen m-auto p-8 sm:pt-10">
-        <GradientBar />
-        <Card>
-          <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-md w-full">
-              <div>
-                <div className="w-32 m-auto mb-6">
-                  <img src={logo} alt="Logo" />
+    <div className="container">
+      <div className="row">
+        <div className="col-md-6 p-2 mt-5 ml-auto mr-auto">
+            <div className="card p-2">
+            <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-md w-full">
+                <div>
+                  <div className="w-32 m-auto mb-6 d-flex flex-column">
+                  <img className="card-img-top w-25 d-flex align-self-center" src="images/avtar-male.png" alt=""/>
+                  </div>
+                  <h2 className="mb-2 text-center text-3xl leading-9 font-extrabold text-gray-900">
+                    Log in to your account
+                  </h2>
+                  <p className="text-gray-600 text-center">
+                    Don't have an account?{' '}
+                    <Hyperlink
+                      to="signup"
+                      text="Sign up now"
+                    />
+                  </p>
                 </div>
-                <h2 className="mb-2 text-center text-3xl leading-9 font-extrabold text-gray-900">
-                  Log in to your account
-                </h2>
-                <p className="text-gray-600 text-center">
-                  Don't have an account?{' '}
-                  <Hyperlink
-                    to="signup"
-                    text="Sign up now"
-                  />
-                </p>
-              </div>
 
-              <Formik
-                initialValues={{
-                  email: '',
-                  password: ''
-                }}
-                onSubmit={values =>
-                  submitCredentials(values)
-                }
-                validationSchema={LoginSchema}
-              >
-                {() => (
-                  <Form className="mt-8">
-                    {loginSuccess && (
-                      <FormSuccess text={loginSuccess} />
-                    )}
-                    {loginError && (
-                      <FormError text={loginError} />
-                    )}
-                    <div>
-                      <div className="mb-2">
-                        <div className="mb-1">
-                          <Label text="Email" />
-                        </div>
-                        <FormInput
-                          ariaLabel="Email"
-                          name="email"
-                          type="text"
-                          placeholder="Email"
-                        />
-                      </div>
+                <Formik
+                  initialValues={{
+                    email: '',
+                    password: ''
+                  }}
+                  onSubmit={values =>
+                    submitCredentials(values)
+                  }
+                  validationSchema={LoginSchema}
+                >
+                  {() => (
+                    <Form className="mt-2 d-flex flex-column">
+                      {loginSuccess && (
+                        <FormSuccess text={loginSuccess} />
+                      )}
+                      {loginError && (
+                        <FormError text={loginError} />
+                      )}
                       <div>
-                        <div className="mb-1">
-                          <Label text="Password" />
+
+                        <div className="mb-2 d-flex justify-content-center flex-column">
+                          <div className="mb-1">
+                            <Label text="Email" />
+                          </div>
+                          <FormInput
+                            ariaLabel="Email"
+                            name="email"
+                            type="text"
+                            placeholder="Email"
+                          />
                         </div>
-                        <FormInput
-                          ariaLabel="Password"
-                          name="password"
-                          type="password"
-                          placeholder="Password"
-                        />
-                      </div>
-                    </div>
 
-                    <div className="mt-6 flex justify-start">
-                      <div className="text-sm leading-5">
-                        <Hyperlink
-                          to="forgot-password"
-                          text="Forgot your password?"
-                        />
-                      </div>
-                    </div>
+                        <div className="mb-2 d-flex justify-content-center flex-column">
+                          <div className="mb-1">
+                            <Label text="Password" />
+                          </div>
+                          <FormInput
+                            ariaLabel="Password"
+                            name="password"
+                            type="password"
+                            placeholder="Password"
+                          />
+                        </div>
 
-                    <div className="mt-6">
-                      <GradientButton
-                        type="submit"
-                        text="Log In"
-                        loading={loginLoading}
-                      />
-                    </div>
-                  </Form>
-                )}
-              </Formik>
-            </div>
+                      </div>
+                      <div className="mt-6">
+                        <Button
+                          className="btn btn-outline-black logoStyle bg"
+                          type="submit"
+                          text="Log In"
+                          loading={loginLoading}
+                        >
+                          Submit
+                        </Button>
+                      </div>
+                    </Form>
+                  )}
+                </Formik>
+              </div>
           </div>
-        </Card>
-      </section>
-    </>
+      </div>
+  </div>
+</div>
+</div>
+</>
   );
 };
 

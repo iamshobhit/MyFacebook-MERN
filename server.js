@@ -6,7 +6,6 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const signUpRouter = require('./routes/signUpRouter')
-const apiRouter =require('./routes/apiRouter');
 const signInRouter = require('./routes/signInRouter');
 const User = require('./models/User')
 
@@ -24,7 +23,7 @@ const PORT = normalizePort(process.env.PORT || 5000)
 app.use(morgan('dev'));
 
 //Express Router Endpoint
-app.use('/api',apiRouter);
+
 app.use('/api/signup',signUpRouter);
 app.use('/api/authenticate',signInRouter);
 

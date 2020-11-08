@@ -1,18 +1,15 @@
 import React, { useState, useContext } from 'react';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import Card from '../components/common/Card';
-import GradientButton from '../components/common/GradientButton';
 import Hyperlink from '../components/common/Hyperlink';
 import Label from '../components/common/Label';
 import FormInput from '../components/FormInput';
-import GradientBar from './../components/common/GradientBar';
 import FormError from './../components/FormError';
 import FormSuccess from './../components/FormSuccess';
-import logo from './../images/logo.png';
 import { publicFetch } from '../util/fetch'
 import { Redirect } from 'react-router';
 import {AuthContext} from '../context/AuthContext'
+import {Button} from 'react-bootstrap'
 
 const SignupSchema = Yup.object().shape({
   firstName: Yup.string().required(
@@ -54,15 +51,14 @@ const Signup = () => {
 
   return (
     <>
-      {redirectOnLogin && <Redirect to="/userpage"/>}
-      <section className="w-1/2 h-screen m-auto p-8 sm:pt-10">
-        <GradientBar />
-        <Card>
-          <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-md w-full">
+      { redirectOnLogin && <Redirect to="/userpage"/>}
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6 p-2 mt-5 ml-auto mr-auto">
+            <div className="card p-2">
               <div>
-                <div className="w-32 m-auto mb-6">
-                  <img src={logo} alt="Logo" />
+                <div className="w-32 m-auto mb-6 d-flex flex-column">
+                <img className="card-img-top w-25 d-flex align-self-center" src="images/avtar-male.png" alt=""/>
                 </div>
                 <h2 className="mb-2 text-center text-3xl leading-9 font-extrabold text-gray-900">
                   Sign up for an account
@@ -72,6 +68,7 @@ const Signup = () => {
                   <Hyperlink to="login" text="Log in now" />
                 </p>
               </div>
+
               <Formik
                 initialValues={{
                   firstName: '',
@@ -83,7 +80,7 @@ const Signup = () => {
                   submitCredentials(values)
                 }
                 validationSchema={SignupSchema}
-              >
+                >
                 {() => (
                   <Form className="mt-8">
                     {signupSuccess && (
@@ -99,7 +96,7 @@ const Signup = () => {
                     />
                     <div>
                       <div className="flex">
-                        <div className="mb-2 mr-2 w-1/2">
+                        <div className="mb-2 d-flex justify-content-center flex-column">
                           <div className="mb-1">
                             <Label text="First Name" />
                           </div>
@@ -110,7 +107,7 @@ const Signup = () => {
                             placeholder="First Name"
                           />
                         </div>
-                        <div className="mb-2 ml-2 w-1/2">
+                        <div className="mb-2 d-flex justify-content-center flex-column">
                           <div className="mb-1">
                             <Label text="Last Name" />
                           </div>
@@ -122,7 +119,7 @@ const Signup = () => {
                           />
                         </div>
                       </div>
-                      <div className="mb-2">
+                      <div className="mb-2 d-flex justify-content-center flex-column">
                         <div className="mb-1">
                           <Label text="Email address" />
                         </div>
@@ -133,7 +130,7 @@ const Signup = () => {
                           placeholder="Email address"
                         />
                       </div>
-                      <div>
+                      <div className="mb-2 d-flex justify-content-center flex-column">
                         <div className="mb-1">
                           <Label text="Password" />
                         </div>
@@ -147,19 +144,23 @@ const Signup = () => {
                     </div>
 
                     <div className="mt-6">
-                      <GradientButton
+                      <Button
+                        className="btn btn-outline-black logoStyle bg"
                         type="submit"
                         text="Sign Up"
                         loading={loginLoading}
-                      />
+                      >
+                        Sign Up
+                      </Button>
                     </div>
                   </Form>
                 )}
               </Formik>
+
             </div>
           </div>
-        </Card>
-      </section>
+        </div>
+      </div>
     </>
   );
 };
